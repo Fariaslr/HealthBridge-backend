@@ -4,6 +4,7 @@ package com.br.macros.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.br.macros.models.Consulta;
@@ -25,7 +26,7 @@ public class ConsultaController {
 	    private ConsultaService consultaService;
 
 	    @PostMapping
-	    public ResponseEntity<Consulta> saveConsulta(@RequestBody @Valid ConsultaRecordDto consultaRecordDto) {
+	    public ResponseEntity<Consulta> saveConsulta(@RequestBody @Validated ConsultaRecordDto consultaRecordDto) {
 	        Consulta consulta = consultaService.saveConsulta(consultaRecordDto);
 	        return ResponseEntity.status(HttpStatus.CREATED).body(consulta);
 	    }

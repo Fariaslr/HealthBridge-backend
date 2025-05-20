@@ -25,7 +25,7 @@ public class AuthController {
 	        Pessoa pessoa = pessoaService.buscarPorEmail(request.email());
 	        
 	        if (pessoa != null && pessoa.getSenha().equals(request.senha())) {
-	            return ResponseEntity.ok("Login realizado com sucesso");
+	            return ResponseEntity.ok(pessoa);
 	        }
 
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");

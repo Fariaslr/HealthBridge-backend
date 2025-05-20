@@ -34,7 +34,7 @@ public class Pessoa extends RepresentationModel<Pessoa> implements Serializable 
 	private String usuario;
 	private String email;
 	
-	//@JsonIgnore
+	@JsonIgnore
 	private String senha;
 
 	@Temporal(TemporalType.DATE)
