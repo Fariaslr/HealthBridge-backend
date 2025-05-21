@@ -8,8 +8,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @DiscriminatorValue("Paciente")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Paciente extends Pessoa {
@@ -28,12 +32,5 @@ public class Paciente extends Pessoa {
 		super(dataNascimento, nome, sobrenome, sexo);
 	}
 
-	public Plano getPlano() {
-		return plano;
-	}
-
-	public void setPlano(Plano plano) {
-		this.plano = plano;
-	}
 
 }

@@ -9,8 +9,12 @@ import com.br.macros.enums.GrupoMuscular;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "exercicios")
 public class Exercicio extends RepresentationModel<Exercicio> implements Serializable {
 
@@ -48,51 +52,4 @@ public class Exercicio extends RepresentationModel<Exercicio> implements Seriali
 		this.urlFoto = urlFoto;
 	}
 
-	public UUID getId() {
-		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
-
-	public GrupoMuscular getGrupoMuscular() {
-		return grupoMuscular;
-	}
-
-	public void setGrupoMuscular(GrupoMuscular grupoMuscular) {
-		this.grupoMuscular = grupoMuscular;
-	}
-
-	public List<ExecucaoExercicio> getTreinoExercicios() {
-		return treinoExercicios;
-	}
-
-	public void setTreinoExercicios(List<ExecucaoExercicio> treinoExercicios) {
-		this.treinoExercicios = treinoExercicios;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public String getUrlFoto() {
-		return urlFoto;
-	}
-
-	public void setUrlFoto(String urlFoto) {
-		this.urlFoto = urlFoto;
-	}
 }
