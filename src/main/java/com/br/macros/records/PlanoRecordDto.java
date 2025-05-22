@@ -1,9 +1,15 @@
 package com.br.macros.records;
 
 
-import com.br.macros.enums.*;
-import com.br.macros.models.*;
+import java.util.UUID;
 
-public record PlanoRecordDto(Paciente paciente, Objetivo objetivo, NivelAtividadeFisica nivelAtividadeFisica, ProfissionalSaude profissionalSaude) {
+import com.br.macros.enums.*;
+
+public record PlanoRecordDto(
+		UUID pacienteId,
+		Objetivo objetivo,
+		NivelAtividadeFisica nivelAtividadeFisica, 
+		UUID profissionalSaudeId
+		) {
 
 }

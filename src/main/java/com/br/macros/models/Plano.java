@@ -8,9 +8,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "planos")
+@Getter
+@Setter
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Plano implements Serializable {
 
@@ -42,60 +46,5 @@ public class Plano implements Serializable {
 	@JsonIgnore
 	private List<Consulta> consultas;
 
-	public UUID getId() {
-		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
-
-	public Paciente getPaciente() {
-		return paciente;
-	}
-
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
-	}
-
-	public Date getDataPlano() {
-		return dataPlano;
-	}
-
-	public void setDataPlano(Date dataPlano) {
-		this.dataPlano = dataPlano;
-	}
-
-	public Objetivo getObjetivo() {
-		return objetivo;
-	}
-
-	public void setObjetivo(Objetivo objetivo) {
-		this.objetivo = objetivo;
-	}
-
-	public NivelAtividadeFisica getNivelAtividadeFisica() {
-		return nivelAtividadeFisica;
-	}
-
-	public void setNivelAtividadeFisica(NivelAtividadeFisica nivelAtividadeFisica) {
-		this.nivelAtividadeFisica = nivelAtividadeFisica;
-	}
-
-	public ProfissionalSaude getProfissionalSaude() {
-		return profissionalSaude;
-	}
-
-	public void setProfissionalSaude(ProfissionalSaude profissionalSaude) {
-		this.profissionalSaude = profissionalSaude;
-	}
-
-	public List<Consulta> getConsultas() {
-		return consultas;
-	}
-
-	public void setConsultas(List<Consulta> consultas) {
-		this.consultas = consultas;
-	}
 
 }

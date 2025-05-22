@@ -53,4 +53,11 @@ public class PlanoController {
 		List<Plano> planos = planoService.buscarPlanosPorProfissionalSaudeId(profissionalSaudeId);
 		return ResponseEntity.ok(planos);
 	}
+	
+	@GetMapping("/paciente/{pacienteId}")
+	public ResponseEntity<Plano> buscarPlanoPorPaciente(@PathVariable UUID pacienteId) {
+	    Plano plano = planoService.buscarPlanoPorPacienteId(pacienteId);
+	    return ResponseEntity.ok(plano);
+	}
+
 }
