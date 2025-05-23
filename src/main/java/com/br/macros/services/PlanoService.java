@@ -24,18 +24,21 @@ public class PlanoService {
 	private PessoaRepository pessoaRepository;
 
 	public Plano adicionarPlano(PlanoRecordDto planoDto) {
-	    Plano plano = new Plano();
+	    if (planoDto.pacienteId() == null || planoDto.profissionalSaudeId() == null) {
+	        throw new IllegalArgumentException("IDs de paciente e profissional de saúde são obrigatórios.");
+	    }
 
 	    Paciente paciente = (Paciente) pessoaRepository.findById(planoDto.pacienteId())
-	        .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
-
-	    ProfissionalSaude profissional = (ProfissionalSaude) pessoaRepository.findById(planoDto.profissionalSaudeId())
-	        .orElseThrow(() -> new RuntimeException("Profissional de saúde não encontrado"));
+	            .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
 	    
+	    ProfissionalSaude profissional = (ProfissionalSaude) pessoaRepository.findById(planoDto.profissionalSaudeId())
+	            .orElseThrow(() -> new RuntimeException("Profissional de saúde não encontrado"));
+
+	    Plano plano = new Plano();
 	    plano.setPaciente(paciente);
-	    plano.setProfissionalSaude(profissional);
 	    plano.setObjetivo(planoDto.objetivo());
 	    plano.setNivelAtividadeFisica(planoDto.nivelAtividadeFisica());
+	    plano.setProfissionalSaude(profissional);
 
 	    return planoRepository.save(plano);
 	}

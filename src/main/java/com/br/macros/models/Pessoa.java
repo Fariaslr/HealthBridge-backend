@@ -53,6 +53,7 @@ public class Pessoa extends RepresentationModel<Pessoa> implements Serializable 
 
 	@Embedded
 	private Endereco endereco;
+	
 
 	public Pessoa() {
 	}
