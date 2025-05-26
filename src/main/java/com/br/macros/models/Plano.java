@@ -2,6 +2,10 @@ package com.br.macros.models;
 
 import java.io.Serializable;
 import java.util.*;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import com.br.macros.enums.*;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -45,6 +49,16 @@ public class Plano implements Serializable {
 	@OneToMany(mappedBy = "plano", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
 	private List<Consulta> consultas;
+	
+	@CreatedDate // Anotação para data de criação
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_criacao", nullable = false, updatable = false) // 'updatable = false' garante que não muda depois de criado
+    private Date dataCriacao;
+
+    @LastModifiedDate // Anotação para data da última atualização
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_atualizacao", nullable = false)
+    private Date dataAtualizacao;
 
 
 }

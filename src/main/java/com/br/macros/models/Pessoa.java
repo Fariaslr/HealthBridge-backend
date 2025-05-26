@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
-public class Pessoa extends RepresentationModel<Pessoa> implements Serializable {
+public abstract class Pessoa extends RepresentationModel<Pessoa> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
