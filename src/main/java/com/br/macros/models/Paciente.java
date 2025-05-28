@@ -28,8 +28,8 @@ public class Paciente extends Pessoa {
 		super();
 	}
 
-	public Paciente(Date dataNascimento, String nome, String sobrenome, Sexo sexo) {
-		super(dataNascimento, nome, sobrenome, sexo);
+	public Paciente( String nome, String sobrenome) {
+		super( nome, sobrenome);
 	}
 
 

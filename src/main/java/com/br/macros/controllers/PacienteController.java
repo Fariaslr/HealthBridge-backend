@@ -1,4 +1,3 @@
-// src/main/java/com/br/macros/controllers/PacienteController.java
 package com.br.macros.controllers;
 
 import com.br.macros.models.Paciente;

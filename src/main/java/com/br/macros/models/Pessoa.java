@@ -58,10 +58,9 @@ public abstract class Pessoa extends RepresentationModel<Pessoa> implements Seri
 	public Pessoa() {
 	}
 
-	public Pessoa(Date dataNascimeto, String nome, String sobrenome, Sexo sexo) {
+	public Pessoa(String nome, String sobrenome) {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
-		this.sexo = sexo;
 	}
 
 

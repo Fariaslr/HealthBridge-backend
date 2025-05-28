@@ -23,4 +23,10 @@ public interface PessoaRepository extends JpaRepository<Pessoa, UUID>{
 
     @Query("SELECT e FROM EducadorFisico e")
     List<EducadorFisico> findAllEducadoresFisicos(); 
+    
+    Optional<EducadorFisico> findEducadorFisicoById(UUID id);
+    Optional<Nutricionista> findNutricionistaById(UUID id); 
+
+    Optional<EducadorFisico> findByCref(String cref);
+    Optional<Nutricionista> findByCrn(String crn);
 }

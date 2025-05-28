@@ -1,9 +1,5 @@
 package com.br.macros.models;
 
-import java.util.Date;
-
-import com.br.macros.enums.Sexo;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -17,8 +13,8 @@ public class Nutricionista extends ProfissionalSaude {
 	public Nutricionista() {
 	}
 
-	public Nutricionista(Date dataNascimento,String crn, String nome, String sobrenome, Sexo sexo) {
-		super(dataNascimento, nome, sobrenome, sexo);
+	public Nutricionista(String crn, String nome, String sobrenome) {
+		super(nome, sobrenome);
 		this.crn = crn;
 	}
 

@@ -1,9 +1,7 @@
 package com.br.macros.models;
 
-import java.util.Date;
 import java.util.List;
 
-import com.br.macros.enums.Sexo;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -29,8 +27,8 @@ public class ProfissionalSaude extends Pessoa {
 
 	}
 
-	public ProfissionalSaude(Date dataNascimento, String nome, String sobrenome, Sexo sexo) {
-		super(dataNascimento, nome, sobrenome, sexo);
+	public ProfissionalSaude( String nome, String sobrenome) {
+		super( nome, sobrenome);
 	}
 
 	public List<Plano> getPlanos() {

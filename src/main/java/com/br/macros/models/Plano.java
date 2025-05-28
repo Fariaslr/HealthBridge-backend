@@ -5,6 +5,7 @@ import java.util.*;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.br.macros.enums.*;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -19,6 +20,7 @@ import lombok.Setter;
 @Table(name = "planos")
 @Getter
 @Setter
+@EntityListeners(AuditingEntityListener.class)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Plano implements Serializable {
 
@@ -30,10 +32,6 @@ public class Plano implements Serializable {
 
 	@OneToOne
 	private Paciente paciente;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "data_plano")
-	private Date dataPlano;
 
 	@Enumerated(EnumType.STRING)
 	private Objetivo objetivo;
@@ -50,12 +48,12 @@ public class Plano implements Serializable {
 	@JsonIgnore
 	private List<Consulta> consultas;
 	
-	@CreatedDate // Anotação para data de criação
+	@CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "data_criacao", nullable = false, updatable = false) // 'updatable = false' garante que não muda depois de criado
+    @Column(name = "data_criacao", nullable = false, updatable = false)
     private Date dataCriacao;
 
-    @LastModifiedDate // Anotação para data da última atualização
+    @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_atualizacao", nullable = false)
     private Date dataAtualizacao;
