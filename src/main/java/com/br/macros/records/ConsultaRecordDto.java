@@ -1,11 +1,32 @@
 package com.br.macros.records;
 
-import java.util.Date;
+import java.util.UUID;
+import jakarta.validation.constraints.NotNull;
 
-import com.br.macros.models.Plano;
-import com.br.macros.models.ProfissionalSaude;
+public record ConsultaRecordDto(
+    UUID planoId,
 
-public record ConsultaRecordDto(Plano plano, Date dataConsulta, float peso, float altura, ProfissionalSaude profissionalSaude)
-{
+    UUID profissionalSaudeId,
+    @NotNull(message = "A data da consulta é obrigatória.")
+    String dataConsulta, 
 
+    float peso, 
+    float altura, 
+    int numeroRefeicoes, 
+
+    Float torax,
+    Float abdomen,
+    Float cintura,
+    Float quadril,
+    Float bracoEsquerdo,
+    Float bracoDireito,
+    Float antibracoEsquerdo,
+    Float antibracoDireito,
+    Float coxaEsquerda,
+    Float coxaDireita,
+    Float panturrilhaEsquerda,
+    Float panturrilhaDireita,
+    Float pescoco
+) {
+    
 }

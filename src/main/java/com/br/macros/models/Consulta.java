@@ -11,8 +11,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "consultas")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Consulta extends RepresentationModel<Consulta> implements Serializable  {
@@ -86,184 +90,6 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 	    @Column(name = "medida_pescoco", nullable = true)
 	    private Float pescoco;
 
-	    public Consulta() {
-	    }
-
-	    public Consulta(Plano plano, Date dataConsulta, float peso, float altura, ProfissionalSaude profissionalSaude) {
-	        this.plano = plano;
-	        this.dataConsulta = dataConsulta;
-	        this.profissionalSaude = profissionalSaude;
-	        this.peso = peso;
-	        this.altura = altura;
-	    }
-
-	    public UUID getId() {
-	        return id;
-	    }
-
-	    public void setId(UUID id) {
-	        this.id = id;
-	    }
-
-	    public Plano getPlano() {
-	        return plano;
-	    }
-
-	    public void setPlano(Plano plano) {
-	        this.plano = plano;
-	    }
-
-	    public Treino getTreino() {
-	        return treino;
-	    }
-
-	    public void setTreino(Treino treino) {
-	        this.treino = treino;
-	    }
-
-	    public Date getDataConsulta() {
-	        return dataConsulta;
-	    }
-
-	    public void setDataConsulta(Date dataConsulta) {
-	        this.dataConsulta = dataConsulta;
-	    }
-
-	    public ProfissionalSaude getProfissionalSaude() {
-	        return profissionalSaude;
-	    }
-
-	    public void setProfissionalSaude(ProfissionalSaude profissionalSaude) {
-	        this.profissionalSaude = profissionalSaude;
-	    }
-
-	    public float getPeso() {
-	        return peso;
-	    }
-
-	    public void setPeso(float peso) {
-	        this.peso = peso;
-	    }
-
-	    public float getAltura() {
-	        return altura;
-	    }
-
-	    public void setAltura(float altura) {
-	        this.altura = altura;
-	    }
-
-	    public int getNumeroRefeicoes() {
-	        return numeroRefeicoes;
-	    }
-
-	    public void setNumeroRefeicoes(int numeroRefeicoes) {
-	        this.numeroRefeicoes = numeroRefeicoes;
-	    }
-
-	    public float getTorax() {
-	        return torax;
-	    }
-
-	    public void setTorax(float torax) {
-	        this.torax = torax;
-	    }
-
-	    public float getAbdomen() {
-	        return abdomen;
-	    }
-
-	    public void setAbdomen(float abdomen) {
-	        this.abdomen = abdomen;
-	    }
-
-	    public float getCintura() {
-	        return cintura;
-	    }
-
-	    public void setCintura(float cintura) {
-	        this.cintura = cintura;
-	    }
-
-	    public float getQuadril() {
-	        return quadril;
-	    }
-
-	    public void setQuadril(float quadril) {
-	        this.quadril = quadril;
-	    }
-
-	    public Float getBracoEsquerdo() {
-	        return bracoEsquerdo;
-	    }
-
-	    public void setBracoEsquerdo(Float bracoEsquerdo) {
-	        this.bracoEsquerdo = bracoEsquerdo;
-	    }
-
-	    public Float getBracoDireito() {
-	        return bracoDireito;
-	    }
-
-	    public void setBracoDireito(Float bracoDireito) {
-	        this.bracoDireito = bracoDireito;
-	    }
-
-	    public Float getAntibracoEsquerdo() {
-	        return antibracoEsquerdo;
-	    }
-
-	    public void setAntibracoEsquerdo(Float antibracoEsquerdo) {
-	        this.antibracoEsquerdo = antibracoEsquerdo;
-	    }
-
-	    public Float getAntibracoDireito() {
-	        return antibracoDireito;
-	    }
-
-	    public void setAntibracoDireito(Float antibracoDireito) {
-	        this.antibracoDireito = antibracoDireito;
-	    }
-
-	    public Float getCoxaEsquerda() {
-	        return coxaEsquerda;
-	    }
-
-	    public void setCoxaEsquerda(Float coxaEsquerda) {
-	        this.coxaEsquerda = coxaEsquerda;
-	    }
-
-	    public Float getCoxaDireita() {
-	        return coxaDireita;
-	    }
-
-	    public void setCoxaDireita(Float coxaDireita) {
-	        this.coxaDireita = coxaDireita;
-	    }
-
-	    public Float getPanturrilhaEsquerda() {
-	        return panturrilhaEsquerda;
-	    }
-
-	    public void setPanturrilhaEsquerda(Float panturrilhaEsquerda) {
-	        this.panturrilhaEsquerda = panturrilhaEsquerda;
-	    }
-
-	    public Float getPanturrilhaDireita() {
-	        return panturrilhaDireita;
-	    }
-
-	    public void setPanturrilhaDireita(Float panturrilhaDireita) {
-	        this.panturrilhaDireita = panturrilhaDireita;
-	    }
-
-	    public Float getPescoco() {
-	        return pescoco;
-	    }
-
-	    public void setPescoco(Float pescoco) {
-	        this.pescoco = pescoco;
-	    }
 
 	    private float calcularTaxaMetabolicaBasal() {
 	        return (float) (switch (plano.getPaciente().getSexo()) {

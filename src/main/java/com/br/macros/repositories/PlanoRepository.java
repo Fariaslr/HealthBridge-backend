@@ -11,7 +11,6 @@ import com.br.macros.models.Plano;
 public interface PlanoRepository extends JpaRepository<Plano, UUID> {
 	
 	List<Plano> findByProfissionalSaudeId(UUID profissionalSaudeId);
-
 	Optional<Plano> findByPacienteId(UUID pacienteId);
 
 }
