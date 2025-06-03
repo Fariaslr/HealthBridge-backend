@@ -50,6 +50,8 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 
 	    @Column(name = "numero_refeicoes")
 	    private int numeroRefeicoes;
+	    
+	    private String observacoes;
 
 	    @Column(name = "medida_torax", nullable = true)
 	    private float torax;
