@@ -1,8 +1,5 @@
 package com.br.macros.models;
 
-import java.util.Date;
-
-import com.br.macros.enums.Sexo;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
