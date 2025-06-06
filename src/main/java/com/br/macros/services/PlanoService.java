@@ -61,15 +61,13 @@ public class PlanoService {
 
     public Plano atualizarPlano(UUID id, PlanoRecordDto planoDto) {
         Plano planoExistente = buscarPlanoPorId(id);
-        Paciente paciente = (Paciente) pessoaRepository.findById(planoDto.pacienteId())
-                .orElseThrow(() -> new NoSuchElementException("Paciente não encontrado para atualização")); // <-- Pode ser NoSuchElementException aqui também
-        
-        ProfissionalSaude profissional = (ProfissionalSaude) pessoaRepository.findById(planoDto.profissionalSaudeId())
-                .orElseThrow(() -> new NoSuchElementException("Profissional de saúde não encontrado para atualização")); // <-- Pode ser NoSuchElementException aqui também
 
-        planoExistente.setPaciente(paciente);
-        planoExistente.setProfissionalSaude(profissional); 
-        BeanUtils.copyProperties(planoDto, planoExistente, "id", "paciente", "profissionalSaude");
+        if (planoDto.objetivo() != null) {
+            planoExistente.setObjetivo(planoDto.objetivo());
+        }
+        if (planoDto.nivelAtividadeFisica() != null) {
+            planoExistente.setNivelAtividadeFisica(planoDto.nivelAtividadeFisica());
+        }
 
         return planoRepository.save(planoExistente);
     }
