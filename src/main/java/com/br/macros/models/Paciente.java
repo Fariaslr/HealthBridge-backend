@@ -1,7 +1,6 @@
 package com.br.macros.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
@@ -18,7 +17,6 @@ public class Paciente extends Pessoa {
 	private static final long serialVersionUID = 1L;
 	
 	@OneToOne(mappedBy = "paciente")
-	@JsonIgnore
     private Plano plano;
 
 	public Paciente() {

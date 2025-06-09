@@ -8,8 +8,8 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.br.macros.models.Pessoa;
-import com.br.macros.records.PessoaRecordDto; // Pode precisar ser ajustado ou removido
-import com.br.macros.services.PessoaService; // Agora mais focado em consultas
+import com.br.macros.records.PessoaRecordDto;
+import com.br.macros.services.PessoaService;
 
 @RestController
 @RequestMapping("/pessoas")

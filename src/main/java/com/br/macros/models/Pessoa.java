@@ -1,17 +1,13 @@
 package com.br.macros.models;
 
 import java.io.Serializable;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.UUID;
+import java.time.*;
+import java.util.*;
 
 import org.springframework.hateoas.RepresentationModel;
 
 import com.br.macros.enums.Sexo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -38,7 +34,6 @@ public abstract class Pessoa extends RepresentationModel<Pessoa> implements Seri
 	private String usuario;
 	private String email;
 	
-	@JsonIgnore
 	private String senha;
 	
 	@Column(name = "dtype", insertable = false, updatable = false)

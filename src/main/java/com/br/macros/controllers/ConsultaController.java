@@ -7,8 +7,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.br.macros.models.Consulta;
-import com.br.macros.models.Paciente; 
-import com.br.macros.models.ProfissionalSaude;
 import com.br.macros.records.ConsultaRecordDto;
 import com.br.macros.services.ConsultaService;
 

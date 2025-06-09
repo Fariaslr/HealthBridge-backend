@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -50,6 +52,16 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 
 	    @Column(name = "numero_refeicoes")
 	    private int numeroRefeicoes;
+	    
+	    @CreatedDate
+	    @Temporal(TemporalType.TIMESTAMP)
+	    @Column(name = "data_criacao", nullable = false, updatable = false)
+	    private Date dataCriacao;
+
+	    @LastModifiedDate
+	    @Temporal(TemporalType.TIMESTAMP)
+	    @Column(name = "data_atualizacao", nullable = false)
+	    private Date dataAtualizacao;
 	    
 	    private String observacoes;
 

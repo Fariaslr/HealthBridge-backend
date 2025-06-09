@@ -1,6 +1,7 @@
 package com.br.macros.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +10,7 @@ import com.br.macros.records.PlanoRecordDto;
 import com.br.macros.services.PlanoService;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @RestController
@@ -53,11 +55,25 @@ public class PlanoController {
 		List<Plano> planos = planoService.buscarPlanosPorProfissionalSaudeId(profissionalSaudeId);
 		return ResponseEntity.ok(planos);
 	}
-	
+
 	@GetMapping("/paciente/{pacienteId}")
 	public ResponseEntity<Plano> buscarPlanoPorPaciente(@PathVariable UUID pacienteId) {
-	    Plano plano = planoService.buscarPlanoPorPacienteId(pacienteId);
-	    return ResponseEntity.ok(plano);
+		try {
+			Plano plano = planoService.buscarPlanoPorPacienteId(pacienteId);
+			return ResponseEntity.ok(plano);
+		} catch (NoSuchElementException e) {
+			// Se o PlanoService lançar NoSuchElementException (recurso não encontrado)
+			// Retorne 404 Not Found
+			System.out.println("Plano para paciente ID " + pacienteId + " não encontrado. Retornando 404. Erro: "
+					+ e.getMessage());
+			return ResponseEntity.notFound().build(); // <--- CORREÇÃO AQUI
+		} catch (Exception e) {
+			// Para quaisquer outros erros inesperados (erros internos do servidor)
+			System.err.println(
+					"Erro interno do servidor ao buscar plano para paciente ID " + pacienteId + ": " + e.getMessage());
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
 	}
 
 }
