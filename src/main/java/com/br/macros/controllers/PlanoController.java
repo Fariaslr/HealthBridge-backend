@@ -62,13 +62,10 @@ public class PlanoController {
 			Plano plano = planoService.buscarPlanoPorPacienteId(pacienteId);
 			return ResponseEntity.ok(plano);
 		} catch (NoSuchElementException e) {
-			// Se o PlanoService lançar NoSuchElementException (recurso não encontrado)
-			// Retorne 404 Not Found
 			System.out.println("Plano para paciente ID " + pacienteId + " não encontrado. Retornando 404. Erro: "
 					+ e.getMessage());
-			return ResponseEntity.notFound().build(); // <--- CORREÇÃO AQUI
+			return ResponseEntity.notFound().build();
 		} catch (Exception e) {
-			// Para quaisquer outros erros inesperados (erros internos do servidor)
 			System.err.println(
 					"Erro interno do servidor ao buscar plano para paciente ID " + pacienteId + ": " + e.getMessage());
 			e.printStackTrace();
