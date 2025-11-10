@@ -7,7 +7,7 @@ import java.util.*;
 import org.springframework.hateoas.RepresentationModel;
 
 import com.br.macros.enums.Sexo;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -38,10 +38,10 @@ public abstract class Pessoa extends RepresentationModel<Pessoa> implements Seri
 	
 	@Column(name = "dtype", insertable = false, updatable = false)
 	private String tipoUsuario;
-
-	@Temporal(TemporalType.DATE)
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column(name = "data_nascimento")
-	private Date dataNascimento;
+	private LocalDate dataNascimento;
 
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
@@ -49,7 +49,6 @@ public abstract class Pessoa extends RepresentationModel<Pessoa> implements Seri
 	@Embedded
 	private Endereco endereco;
 	
-
 	public Pessoa() {
 	}
 
@@ -59,13 +58,13 @@ public abstract class Pessoa extends RepresentationModel<Pessoa> implements Seri
 	}
 
 
-	public int calcularIdade() {
+	/*public int calcularIdade() {
 		LocalDate birth = LocalDate.now();
 		LocalDate nascimento = Instant.ofEpochMilli(dataNascimento.getTime()).atZone(ZoneId.systemDefault())
 				.toLocalDate();
 		Period periodo = Period.between(nascimento, birth);
 		return periodo.getYears();
-	}
+	}*/
 
 	@Override
 	public String toString() {

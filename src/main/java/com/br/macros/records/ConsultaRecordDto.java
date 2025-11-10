@@ -8,7 +8,21 @@ public record ConsultaRecordDto(
     UUID profissionalSaudeId,
     float peso, 
     float altura,
-    Date dataCriacao
+    int numeroRefeicoes, 
+    Date dataCriacao,
+    Float torax,       
+    Float abdomen,   
+    Float cintura,
+    Float quadril,
+    Float bracoEsquerdo,
+    Float bracoDireito,
+    Float antibracoEsquerdo,
+    Float antibracoDireito,
+    Float coxaEsquerda,
+    Float coxaDireita,
+    Float panturrilhaEsquerda,
+    Float panturrilhaDireita,
+    Float pescoco,
+    String observacoes
 ) {
-    
 }

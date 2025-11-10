@@ -195,5 +195,20 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 	        }
 	        return (panturrilhaDireita != null ? panturrilhaDireita + " cm (D) " : "") + (panturrilhaEsquerda != null ? panturrilhaEsquerda + " cm (E)" : "");
 	    }
+	    
+	    @PrePersist
+	    protected void onCreate() {
+	        if (this.dataCriacao == null) {
+	            this.dataCriacao = new Date();
+	        }
+	        if (this.dataAtualizacao == null) {
+	            this.dataAtualizacao = this.dataCriacao; 
+	        }
+	    }
+
+	    @PreUpdate
+	    protected void onUpdate() {
+	        this.dataAtualizacao = new Date();
+	    }
 
 }
