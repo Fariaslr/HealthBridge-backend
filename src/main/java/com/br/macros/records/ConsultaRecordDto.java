@@ -1,15 +1,17 @@
 package com.br.macros.records;
 
-import java.util.Date;
+import java.time.OffsetDateTime;
 import java.util.UUID;
+
+import jakarta.validation.constraints.Positive;
 
 public record ConsultaRecordDto(
     UUID planoId,
     UUID profissionalSaudeId,
-    float peso, 
-    float altura,
+    @Positive Float peso, 
+    @Positive Float altura,
     int numeroRefeicoes, 
-    Date dataCriacao,
+    OffsetDateTime dataConsulta,
     Float torax,       
     Float abdomen,   
     Float cintura,

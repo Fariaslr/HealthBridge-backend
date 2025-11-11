@@ -1,15 +1,17 @@
 package com.br.macros.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.hateoas.RepresentationModel;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
@@ -29,6 +31,7 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 	    private UUID id;
 
 	    @ManyToOne
+	    @JsonIgnore
 	    @JoinColumn(name = "plano_id", nullable = false)
 	    private Plano plano;
 
@@ -36,11 +39,12 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 	    @JsonIgnore
 	    private Treino treino;
 
-	    @Temporal(TemporalType.TIMESTAMP)
-	    @Column(name = "dataconsulta")
-	    private Date dataConsulta;
+	    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssXXX")
+	    @Column(name = "data_consulta")
+	    private OffsetDateTime dataConsulta;
 
 	    @ManyToOne
+	    @JsonIgnore
 	    @JoinColumn(name = "profissional_saude_id", nullable = false)
 	    private ProfissionalSaude profissionalSaude;
 
@@ -54,14 +58,11 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 	    private int numeroRefeicoes;
 	    
 	    @CreatedDate
-	    @Temporal(TemporalType.TIMESTAMP)
 	    @Column(name = "data_criacao", nullable = false, updatable = false)
-	    private Date dataCriacao;
+	    private OffsetDateTime dataCriacao;
 
 	    @LastModifiedDate
-	    @Temporal(TemporalType.TIMESTAMP)
-	    @Column(name = "data_atualizacao", nullable = false)
-	    private Date dataAtualizacao;
+	    private OffsetDateTime dataAtualizacao;
 	    
 	    private String observacoes;
 
@@ -120,6 +121,7 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 	        return calcularTaxaMetabolicaBasal() * plano.getNivelAtividadeFisica().getFATOR();
 	    }
 
+	    @JsonProperty("caloriasDiarias")
 	    public float calcularCaloriasDieta() {
 	        return switch (plano.getObjetivo()) {
 	            case EMAGRECIMENTO ->
@@ -199,16 +201,16 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 	    @PrePersist
 	    protected void onCreate() {
 	        if (this.dataCriacao == null) {
-	            this.dataCriacao = new Date();
+	            this.dataCriacao = OffsetDateTime.now(); 
 	        }
 	        if (this.dataAtualizacao == null) {
-	            this.dataAtualizacao = this.dataCriacao; 
+	            this.dataAtualizacao = this.getDataCriacao();
 	        }
 	    }
 
 	    @PreUpdate
 	    protected void onUpdate() {
-	        this.dataAtualizacao = new Date();
+	        this.dataAtualizacao = OffsetDateTime.now(); 
 	    }
 
 }

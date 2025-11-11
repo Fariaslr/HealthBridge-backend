@@ -8,6 +8,7 @@ import org.springframework.hateoas.RepresentationModel;
 
 import com.br.macros.enums.Sexo;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -57,14 +58,15 @@ public abstract class Pessoa extends RepresentationModel<Pessoa> implements Seri
 		this.sobrenome = sobrenome;
 	}
 
+	@JsonProperty("idade")
+	public int calcularIdade() {
+		if (this.dataNascimento == null) {
+	        return 0; 
+	    }         
 
-	/*public int calcularIdade() {
-		LocalDate birth = LocalDate.now();
-		LocalDate nascimento = Instant.ofEpochMilli(dataNascimento.getTime()).atZone(ZoneId.systemDefault())
-				.toLocalDate();
-		Period periodo = Period.between(nascimento, birth);
-		return periodo.getYears();
-	}*/
+	    LocalDate dataAtual = LocalDate.now();
+	    return Period.between(this.dataNascimento, dataAtual).getYears();
+	}
 
 	@Override
 	public String toString() {
