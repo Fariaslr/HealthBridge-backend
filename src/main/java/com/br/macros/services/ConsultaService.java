@@ -35,6 +35,7 @@ public class ConsultaService {
     @Transactional
     public Consulta saveConsulta(ConsultaRecordDto consultaRecordDto) {
         Consulta consulta = new Consulta();
+        System.out.println(">>> Recebido dataConsulta: " + consultaRecordDto.dataConsulta());
         BeanUtils.copyProperties(consultaRecordDto, consulta, "planoId", "profissionalSaudeId", "dataConsulta");
 
         Plano plano = planoRepository.findById(consultaRecordDto.planoId())
@@ -98,6 +99,7 @@ public class ConsultaService {
 
     @Transactional
     public Consulta updateConsulta(UUID id, ConsultaRecordDto consultaRecordDto) {
+    	System.out.println(">>> Recebido dataConsulta: " + consultaRecordDto.dataConsulta());
         Consulta consulta = consultaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Consulta não encontrada com ID: " + id + " para atualização."));
 

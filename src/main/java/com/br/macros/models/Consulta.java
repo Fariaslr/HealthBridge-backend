@@ -39,7 +39,6 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 	    @JsonIgnore
 	    private Treino treino;
 
-	    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssXXX")
 	    @Column(name = "data_consulta")
 	    private OffsetDateTime dataConsulta;
 

@@ -3,6 +3,8 @@ package com.br.macros.records;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.validation.constraints.Positive;
 
 public record ConsultaRecordDto(
@@ -11,6 +13,7 @@ public record ConsultaRecordDto(
     @Positive Float peso, 
     @Positive Float altura,
     int numeroRefeicoes, 
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     OffsetDateTime dataConsulta,
     Float torax,       
     Float abdomen,   
