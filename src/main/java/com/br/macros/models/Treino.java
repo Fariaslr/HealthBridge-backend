@@ -1,7 +1,7 @@
 package com.br.macros.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,7 +12,11 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "treinos")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -24,9 +28,8 @@ public class Treino extends RepresentationModel<Treino> implements Serializable 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "datatreino")
-	private Date dataTreino;
+	private OffsetDateTime dataTreino;
 
 	@OneToOne
 	@JoinColumn(name = "consulta_id", nullable = false)
@@ -41,45 +44,5 @@ public class Treino extends RepresentationModel<Treino> implements Serializable 
 	@Enumerated(EnumType.STRING)
     @Column(name = "tempo_projeto", length = 30)
     private TempoProjeto tempo;
-
-	public UUID getId() {
-		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
-
-	public Date getDataTreino() {
-		return dataTreino;
-	}
-
-	public void setDataTreino(Date dataTreino) {
-		this.dataTreino = dataTreino;
-	}
-
-	public Consulta getConsulta() {
-		return consulta;
-	}
-
-	public void setConsulta(Consulta consulta) {
-		this.consulta = consulta;
-	}
-
-	public List<ExecucaoExercicio> getTreinoExercicios() {
-		return treinoExercicios;
-	}
-
-	public void setTreinoExercicios(List<ExecucaoExercicio> treinoExercicios) {
-		this.treinoExercicios = treinoExercicios;
-	}
-
-	public UUID getEducadorFisico() {
-		return educadorFisico;
-	}
-
-	public void setEducadorFisico(UUID educadorFisico) {
-		this.educadorFisico = educadorFisico;
-	}
 	
 }
