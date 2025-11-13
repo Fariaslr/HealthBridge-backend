@@ -1,9 +1,16 @@
 package com.br.macros.records;
 
+import java.util.UUID;
+
 import com.br.macros.enums.DivisaoTreino;
-import com.br.macros.models.Exercicio;
 
-public record ExecucaoExercicioRecordDto(Exercicio exercicio, DivisaoTreino divisao, int series, int repeticoes, float carga,
-		int intervaloSerie) {
-
-}
+public record ExecucaoExercicioRecordDto(
+		UUID exercicioId,
+	    DivisaoTreino divisao,
+	    int series,
+	    Integer repeticoes,
+	    float carga,
+	    Integer intervaloSerie,
+	    String observacao,
+	    int ordem    
+		) {}

@@ -1,6 +1,5 @@
 package com.br.macros.pdf;
 
-import com.br.macros.enums.Sexo;
 import com.br.macros.models.*;
 import com.itextpdf.io.IOException;
 import com.itextpdf.io.image.*;
@@ -31,7 +30,7 @@ public class PDF {
 	static float fontSizeDescricao = 10f;
 	private static final int MARGIN = 10;
 	private static final int PADDING = 10;
-	private static final DeviceRgb MARROM_ESCURO = new DeviceRgb(124, 76, 22);
+	//private static final DeviceRgb MARROM_ESCURO = new DeviceRgb(124, 76, 22);
 	private static final DeviceRgb AZUL_MARINHO = new DeviceRgb(0, 64, 128);
 	private static final float IMAGE_WIDTH = 300f;
 	private static final float IMAGE_HEIGHT = 300f;

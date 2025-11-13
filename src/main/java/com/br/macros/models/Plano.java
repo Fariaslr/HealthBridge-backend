@@ -31,7 +31,6 @@ public class Plano implements Serializable {
 	private UUID id;
 
 	@OneToOne
-	@JsonIgnore
 	private Paciente paciente;
 
 	@Enumerated(EnumType.STRING)
@@ -42,6 +41,7 @@ public class Plano implements Serializable {
 	private NivelAtividadeFisica nivelAtividadeFisica;
 
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "profissional_saude_id", nullable = false)
 	private ProfissionalSaude profissionalSaude;
 	
@@ -55,6 +55,7 @@ public class Plano implements Serializable {
     @Column(name = "data_atualizacao", nullable = false)
     private Date dataAtualizacao;
 
+    @JsonIgnore
 	@OneToMany(mappedBy = "plano", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Consulta> consultas;
 	

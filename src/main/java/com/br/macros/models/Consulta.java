@@ -8,7 +8,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.hateoas.RepresentationModel;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -31,19 +30,16 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 	    private UUID id;
 
 	    @ManyToOne
-	    @JsonIgnore
 	    @JoinColumn(name = "plano_id", nullable = false)
 	    private Plano plano;
 
-	    @OneToOne(mappedBy = "consulta")
-	    @JsonIgnore
+	    @OneToOne(mappedBy = "consulta", cascade = CascadeType.ALL)
 	    private Treino treino;
 
 	    @Column(name = "data_consulta")
 	    private OffsetDateTime dataConsulta;
 
 	    @ManyToOne
-	    @JsonIgnore
 	    @JoinColumn(name = "profissional_saude_id", nullable = false)
 	    private ProfissionalSaude profissionalSaude;
 
@@ -66,13 +62,13 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 	    private String observacoes;
 
 	    @Column(name = "medida_torax", nullable = true)
-	    private float torax;
+	    private Float torax;
 
 	    @Column(name = "medida_abdomen", nullable = true)
-	    private float abdomen;
+	    private Float abdomen;
 
 	    @Column(name = "medida_cintura", nullable = true)
-	    private float cintura;
+	    private Float cintura;
 
 	    @Column(name = "medida_quadril", nullable = true)
 	    private float quadril;
@@ -103,7 +99,6 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 
 	    @Column(name = "medida_pescoco", nullable = true)
 	    private Float pescoco;
-
 
 	    private float calcularTaxaMetabolicaBasal() {
 	        return (float) (switch (plano.getPaciente().getSexo()) {
@@ -148,7 +143,7 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 	            });
 	        }
 	    }
-
+	    @JsonProperty("aguaDiaria")
 	    public float calcularAguaDiaria() {
 	        return peso * 35;
 	    }
@@ -170,7 +165,7 @@ public class Consulta extends RepresentationModel<Consulta> implements Serializa
 	    }
 
 	    public String getMedidaBraço() {
-	        if (this.bracoDireito == null && bracoEsquerdo == null) {
+	        if (this.bracoDireito == 0 && bracoEsquerdo == 0) {
 	            return " - ";
 	        }
 	        return (bracoDireito != null ? bracoDireito + " cm (D) " : "") + (bracoEsquerdo != null ? bracoEsquerdo + " cm (E)" : "");

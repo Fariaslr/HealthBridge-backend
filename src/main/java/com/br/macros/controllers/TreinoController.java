@@ -20,7 +20,7 @@ public class TreinoController {
 
     @PostMapping
     public ResponseEntity<Treino> adicionarTreino(@RequestBody TreinoRecordDto treinoDto) {
-        Treino novoTreino = treinoService.adicionarTreino(treinoDto);
+        Treino novoTreino = treinoService.criarTreino(treinoDto);
         return ResponseEntity.ok(novoTreino);
     }
 
@@ -53,4 +53,11 @@ public class TreinoController {
         List<Treino> treinos = treinoService.buscarTreinosPorProfissionalSaudeId(profissionalSaudeId);
         return ResponseEntity.ok(treinos);
     }
+    
+    @GetMapping("/paciente/{pacienteId}")
+    public ResponseEntity<List<Treino>> buscarTreinosPorPaciente(@PathVariable UUID pacienteId) {
+        List<Treino> treinos = treinoService.buscarTreinosPorPacienteId(pacienteId);
+        return ResponseEntity.ok(treinos);
+    }
+
 }
